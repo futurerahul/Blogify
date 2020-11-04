@@ -1,0 +1,57 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}Blog{% endblock %}
+
+{% block header-image %}{% static 'blog/img/about-bg1.jpg' %}{% endblock %}
+
+{% block navbar %}
+    <li class="nav-item">
+	   	<form method="GET" action=''>
+	        <div class="input-group input-group-lg">
+		      	<input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request.GET.q }}"/>
+	    	</div>
+	    </form>
+    </li>
+    <li class="nav-item">
+		<a class="nav-link page-scroll" href="#">Create</a>
+	</li>
+	<li class="nav-item">
+        <a class="nav-link page-scroll" href="#">Forum</a>
+    </li>
+{% endblock %}
+
+{% block heading %}
+	<div class="site-heading">
+	    <h1>Blogs</h1>
+	    <span class="meta">Come for what you love. Stay for what you discover.</span>
+	</div>
+{% endblock %}
+
+<a href="#" style="color: white;border: 3px solid white; padding: 5px">Create</a>
+
+{% block content %}
+
+<div class="container">
+<div class="row">
+<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+
+	{% for post in posts %}
+		<div class="post-preview">
+            <a href="{{ post.get_absolute_url }}">
+                <h2 class="post-title">
+                    {{ post.title }}
+                </h2>
+            </a>
+            <p class="post-meta">Posted by <a href="#">{% if post.author.username %}{{ post.author.username }}{% endif %}</a> on {{ post.date_posted|date:"d F,Y" }}</p>
+        </div>
+        <hr>
+	{% endfor %}
+
+	
+
+</div>
+</div>
+</div>
+
+{% endblock %}

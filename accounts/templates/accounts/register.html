@@ -1,0 +1,24 @@
+{% extends "accounts/register_base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        
+        <fieldset class="form-group">
+                <div class="page-header">
+                        <h1><small>Register to Blogram</small></h1>
+                      </div>
+                    </br>
+            {{form|crispy}}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+        
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already an user?<a class=" ml-2" href="{% url 'login' %}">Log In</a>
+        </small>
+    </div>
+{% endblock %}
